@@ -4,7 +4,7 @@ import org.specs2.mutable._
 
 import com.ee.countingOut.Implicits._
 
-class ImplicitsSpec extends Specification {
+class ImplicitsTest extends Specification {
 
   "TraversableRotation" should {
 
