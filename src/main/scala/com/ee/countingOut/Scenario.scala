@@ -19,13 +19,13 @@ object Scenario {
   def lastPositionLeft(size: Int, step: Int): Either[ScenarioException, Int] = {
 
     @scala.annotation.tailrec
-    def recurse(l:Seq[Int]) : Either[ScenarioException,Int] = {
+    def rotateAndPrune(l:Seq[Int]) : Either[ScenarioException,Int] = {
       l match {
         case Nil => Left(ScenarioException("Empty list - this should never happen"))
         case Seq(n) => Right(n)
         case _ => {
           val updated = l.rotate(step -1).drop(1)
-          recurse(updated)
+          rotateAndPrune(updated)
         }
       }
     }
@@ -36,7 +36,7 @@ object Scenario {
       case (1, _) => Right(1)
       case (size, step) => {
         val circle = (1 to size)
-        recurse(circle)
+        rotateAndPrune(circle)
       }
     }
   }
